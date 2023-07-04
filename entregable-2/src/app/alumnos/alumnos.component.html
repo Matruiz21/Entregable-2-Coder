@@ -1,0 +1,30 @@
+<h1>Alumnos</h1>
+
+<p> Curso coderhouse - Angular </p>
+<h4> Actualizado al: {{ hoy | date:'dd-MM-yy'}} </h4>
+
+<ul>
+    <li *ngFor="let alumno of alumnos">
+        {{alumno.apellido}}, {{alumno.nombre }}
+        <br>
+        Fecha de Nacimiento: {{alumno.fechaNacimiento}}
+
+        <h3> Nota final: {{alumno.nota}}</h3>
+
+        <div class="aprobados" *ngIf="alumno.nota >= notaParaAprobar ">
+            El alumno está aprobado.
+        </div>
+
+        <div class="desaprobados" *ngIf="alumno.nota < notaParaAprobar ">
+            El alumno está desaprobado.
+        </div>
+
+    </li>
+
+</ul>
+
+<h3 [ngClass]="notaParaAprobar > 6 ? 'texto-correcto' : 'texto-incorrecto'"> Para aprobar el curso la nota del alumno
+    debe
+    ser mayor a: {{notaParaAprobar}} </h3>
+
+<button button class="btn btn-primary" (click)="cambiarNotaParaAprobar()"> Modificar nota para aprobar </button>
